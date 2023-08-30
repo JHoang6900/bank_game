@@ -13,7 +13,7 @@ export default function Counter() {
         <h1>Number: {number}</h1>
 
         <div className='flex-row py-2'>
-      <button className='px-4 py-2 mr-2 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700' onClick={() => {
+      <button className='px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700' onClick={() => {
         increment();
         increment();
         increment();
