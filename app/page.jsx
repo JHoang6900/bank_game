@@ -1,6 +1,7 @@
 // import Image from 'next/image'
 import Link from 'next/link'
 import Gameplay from './gameplay/page'
+import Players from './players/page'
 
 
 
@@ -10,6 +11,7 @@ export default function Home() {
       <div className="">
 
     <Gameplay />
+    <Players />
 
       </div>
     </main>
