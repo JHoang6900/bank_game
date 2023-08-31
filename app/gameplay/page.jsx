@@ -13,8 +13,9 @@ export default function Counter() {
   }
 
   return (
-      <div className='flex flex-col items-center justify-center w-full font-semibold'>
-        <h1>Number: {number}</h1>
+      <div className='flex flex-col items-center justify-center w-full p-10 rounded-xl outline-double outline-zinc-300'>
+        <h1 className='font-semibold text-yellow-500 text-7xl'>{number}</h1>
+        <p className='pb-2 font-semibold'>Round Total</p>
 
         <div id="row1-buttons" className='flex-row py-2'>
 
