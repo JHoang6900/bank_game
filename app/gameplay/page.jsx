@@ -230,6 +230,12 @@ export default function Gameplay() {
 }
 
 
-// UI Library 
-// Undo Button 
-// CRUD screen for players
+// UI Library for icons like home (controls across bottom of screen)
+// Undo Button inside box vs across bottom of screen
+// Undo, Redo, Home buttons
+
+// Add Current Player Name to Gameplay Screen
+
+// CRUD screen for players (before gameplay)
+
+// after a player banks, freeze their name and score (mute color or freeze icon)
