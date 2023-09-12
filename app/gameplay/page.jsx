@@ -28,8 +28,9 @@ export default function Gameplay() {
         <button
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
-            increment();
-            increment();
+            for (let i = 0; i < 2; i++) {
+              increment();
+            }
           }}
         >
           +2
@@ -38,9 +39,9 @@ export default function Gameplay() {
         <button
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
-            increment();
-            increment();
-            increment();
+            for (let i = 0; i < 3; i++) {
+              increment();
+            }
           }}
         >
           +3
@@ -49,10 +50,9 @@ export default function Gameplay() {
         <button
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
-            increment();
-            increment();
-            increment();
-            increment();
+            for (let i = 0; i < 4; i++) {
+              increment();
+            }
           }}
         >
           +4
@@ -61,11 +61,9 @@ export default function Gameplay() {
         <button
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
+            for (let i = 0; i < 5; i++) {
+              increment();
+            }
           }}
         >
           +5
@@ -76,12 +74,9 @@ export default function Gameplay() {
         <button
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
+            for (let i = 0; i < 6; i++) {
+              increment();
+            }
           }}
         >
           +6
@@ -90,13 +85,9 @@ export default function Gameplay() {
         <button
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
+            for (let i = 0; i < 7; i++) {
+              increment();
+            }
           }}
         >
           +7
@@ -105,14 +96,9 @@ export default function Gameplay() {
         <button
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
+            for (let i = 0; i < 8; i++) {
+              increment();
+            }
           }}
         >
           +8
@@ -121,15 +107,9 @@ export default function Gameplay() {
         <button
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
+            for (let i = 0; i < 9; i++) {
+              increment();
+            }
           }}
         >
           +9
@@ -143,16 +123,9 @@ export default function Gameplay() {
         <button
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
+            for (let i = 0; i < 10; i++) {
+              increment();
+            }
           }}
         >
           +10
@@ -161,17 +134,9 @@ export default function Gameplay() {
         <button
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
+            for (let i = 0; i < 11; i++) {
+              increment();
+            }
           }}
         >
           +11
@@ -180,18 +145,9 @@ export default function Gameplay() {
         <button
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
-            increment();
+            for (let i = 0; i < 12; i++) {
+              increment();
+            }
           }}
         >
           +12
