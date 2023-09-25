@@ -1,16 +1,9 @@
 "use client";
 import { useState } from "react";
+import { player, playersArray } from "../players/page.jsx";
 
-export default function Gameplay() {
-  const [number, setNumber] = useState(0);
-
-  function increment() {
-    setNumber((a) => a + 1);
-  }
-
-  function double() {
-    setNumber((a) => a * 2);
-  }
+export default function GameplayPage(props) {
+  const { number, bankPlayers, onIncrement, onDouble, onBankPlayers } = props;
 
   return (
     <div className="flex flex-col items-center justify-center w-full p-10 rounded-xl outline-double outline-zinc-300">
@@ -29,7 +22,7 @@ export default function Gameplay() {
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
             for (let i = 0; i < 2; i++) {
-              increment();
+              onIncrement();
             }
           }}
         >
@@ -40,7 +33,7 @@ export default function Gameplay() {
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
             for (let i = 0; i < 3; i++) {
-              increment();
+              onIncrement();
             }
           }}
         >
@@ -51,7 +44,7 @@ export default function Gameplay() {
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
             for (let i = 0; i < 4; i++) {
-              increment();
+              onIncrement();
             }
           }}
         >
@@ -62,7 +55,7 @@ export default function Gameplay() {
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
             for (let i = 0; i < 5; i++) {
-              increment();
+              onIncrement();
             }
           }}
         >
@@ -75,7 +68,7 @@ export default function Gameplay() {
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
             for (let i = 0; i < 6; i++) {
-              increment();
+              onIncrement();
             }
           }}
         >
@@ -86,7 +79,7 @@ export default function Gameplay() {
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
             for (let i = 0; i < 7; i++) {
-              increment();
+              onIncrement();
             }
           }}
         >
@@ -97,7 +90,7 @@ export default function Gameplay() {
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
             for (let i = 0; i < 8; i++) {
-              increment();
+              onIncrement();
             }
           }}
         >
@@ -108,7 +101,7 @@ export default function Gameplay() {
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
             for (let i = 0; i < 9; i++) {
-              increment();
+              onIncrement();
             }
           }}
         >
@@ -124,7 +117,7 @@ export default function Gameplay() {
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
             for (let i = 0; i < 10; i++) {
-              increment();
+              onIncrement();
             }
           }}
         >
@@ -135,7 +128,7 @@ export default function Gameplay() {
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
             for (let i = 0; i < 11; i++) {
-              increment();
+              onIncrement();
             }
           }}
         >
@@ -146,7 +139,7 @@ export default function Gameplay() {
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
           onClick={() => {
             for (let i = 0; i < 12; i++) {
-              increment();
+              onIncrement();
             }
           }}
         >
@@ -161,7 +154,7 @@ export default function Gameplay() {
         <button
           className="py-2 mr-1 font-bold text-white bg-orange-400 rounded-full px-28 hover:bg-orange-700"
           onClick={() => {
-            double();
+            onDouble();
           }}
         >
           x2
@@ -174,9 +167,7 @@ export default function Gameplay() {
       >
         <button
           className="px-24 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
-          onClick={() => {
-            double();
-          }}
+          onClick={onBankPlayers}
         >
           Bank!
         </button>
@@ -184,7 +175,6 @@ export default function Gameplay() {
     </div>
   );
 }
-
 
 // UI Library for icons like home (controls across bottom of screen)
 // Undo Button inside box vs across bottom of screen

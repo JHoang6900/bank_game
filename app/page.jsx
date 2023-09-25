@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import Gameplay from './gameplay/page'
 import Players from './players/page'
+import GameContainer from './components/gamecontainer'
 
 
 
@@ -10,8 +11,9 @@ export default function Home() {
     <main className="grid h-screen place-items-center">
       <div className="">
 
-    <Gameplay />
-    <Players />
+    {/* <Gameplay />
+    <Players /> */}
+    <GameContainer />
 
       </div>
     </main>
