@@ -20,7 +20,7 @@ export default function GameContainer() {
         name: newPlayerName,
         score: 0,
         isChecked: false,
-        isBanked: false,
+        hasBanked: false,
       };
       setPlayersArray([...playersArray, newPlayer]);
       setNewPlayerName("");
@@ -44,14 +44,21 @@ export default function GameContainer() {
 
   function bankPlayers() {
     const updatedPlayersArray = playersArray.map((player) => {
-      if (player.isChecked) {
-        return { ...player, isBanked: true };
+      if (player.isChecked && !player.hasBanked) {
+        return { ...player, score: player.score + number, hasBanked: true,  };
       }
       return player;
+
+
     });
+
+
+
     setPlayersArray(updatedPlayersArray);
     console.log("Players banked!");
   }
+  
+
   
 
 
@@ -73,7 +80,7 @@ export default function GameContainer() {
 
   function toggleCheckbox(index) {
     if (index >= 0 && index < playersArray.length) {
-      if(!playersArray[index].isBanked){
+      if(!playersArray[index].hasBanked){
       const updatedPlayersArray = [...playersArray];
       updatedPlayersArray[index].isChecked = !updatedPlayersArray[index].isChecked;
       setPlayersArray(updatedPlayersArray);
