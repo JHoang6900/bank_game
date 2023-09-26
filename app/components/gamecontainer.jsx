@@ -9,6 +9,7 @@ export default function GameContainer() {
   const [playersArray, setPlayersArray] = useState([]);
   const [newPlayerName, setNewPlayerName] = useState("");
   const [number, setNumber] = useState(0);
+  const [roll, setRoll] = useState(0);
 
   // Function to add a new player
   function addPlayer() 
@@ -35,6 +36,10 @@ export default function GameContainer() {
   // Function to double the number
   function double() {
     setNumber((a) => a * 2);
+  }
+
+  function nextRoll(){
+    setRoll((a) => a + 1);
   }
 
   function bankPlayers() {
@@ -85,7 +90,9 @@ export default function GameContainer() {
     <div>
       <GameplayPage
         number={number}
+        roll={roll}
         onIncrement={increment}
+        onNextRoll={nextRoll}
         onDouble={double}
         onBankPlayers={bankPlayers}
       />

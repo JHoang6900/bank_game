@@ -3,13 +3,13 @@ import { useState } from "react";
 import { player, playersArray } from "../players/page.jsx";
 
 export default function GameplayPage(props) {
-  const { number, onIncrement, onDouble, onBankPlayers } = props;
+  const { number, roll, onIncrement, onDouble, onNextRoll , onBankPlayers, } = props;
 
   return (
     <div className="flex flex-col items-center justify-center w-full p-10 rounded-xl outline-double outline-zinc-300">
       <p className="font-semibold leading-tight">Round 1/10</p>
 
-      <p className="pb-1 font-semibold">Roll 4</p>
+      <p className="pb-1 font-semibold">Roll: {roll}</p>
 
       <h1 className="font-semibold text-yellow-500 text-7xl">{number}</h1>
       <p className="pb-2 text-lg font-semibold">Round Total</p>
@@ -24,6 +24,7 @@ export default function GameplayPage(props) {
             for (let i = 0; i < 2; i++) {
               onIncrement();
             }
+            onNextRoll();
           }}
         >
           +2
@@ -35,6 +36,7 @@ export default function GameplayPage(props) {
             for (let i = 0; i < 3; i++) {
               onIncrement();
             }
+            onNextRoll();
           }}
         >
           +3
@@ -46,6 +48,7 @@ export default function GameplayPage(props) {
             for (let i = 0; i < 4; i++) {
               onIncrement();
             }
+            onNextRoll();
           }}
         >
           +4
@@ -57,6 +60,7 @@ export default function GameplayPage(props) {
             for (let i = 0; i < 5; i++) {
               onIncrement();
             }
+            onNextRoll();
           }}
         >
           +5
@@ -70,6 +74,7 @@ export default function GameplayPage(props) {
             for (let i = 0; i < 6; i++) {
               onIncrement();
             }
+            onNextRoll();
           }}
         >
           +6
@@ -81,6 +86,7 @@ export default function GameplayPage(props) {
             for (let i = 0; i < 7; i++) {
               onIncrement();
             }
+            onNextRoll();
           }}
         >
           +7
@@ -92,6 +98,7 @@ export default function GameplayPage(props) {
             for (let i = 0; i < 8; i++) {
               onIncrement();
             }
+            onNextRoll();
           }}
         >
           +8
@@ -103,6 +110,7 @@ export default function GameplayPage(props) {
             for (let i = 0; i < 9; i++) {
               onIncrement();
             }
+            onNextRoll();
           }}
         >
           +9
@@ -119,6 +127,7 @@ export default function GameplayPage(props) {
             for (let i = 0; i < 10; i++) {
               onIncrement();
             }
+            onNextRoll();
           }}
         >
           +10
@@ -130,6 +139,7 @@ export default function GameplayPage(props) {
             for (let i = 0; i < 11; i++) {
               onIncrement();
             }
+            onNextRoll();
           }}
         >
           +11
@@ -141,6 +151,7 @@ export default function GameplayPage(props) {
             for (let i = 0; i < 12; i++) {
               onIncrement();
             }
+            onNextRoll();
           }}
         >
           +12
@@ -155,6 +166,7 @@ export default function GameplayPage(props) {
           className="py-2 mr-1 font-bold text-white bg-orange-400 rounded-full px-28 hover:bg-orange-700"
           onClick={() => {
             onDouble();
+            onNextRoll();
           }}
         >
           x2
