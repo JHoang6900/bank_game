@@ -3,7 +3,7 @@ import { useState } from "react";
 import { player, playersArray } from "../players/page.jsx";
 
 export default function GameplayPage(props) {
-  const { number, bankPlayers, onIncrement, onDouble, onBankPlayers } = props;
+  const { number, onIncrement, onDouble, onBankPlayers } = props;
 
   return (
     <div className="flex flex-col items-center justify-center w-full p-10 rounded-xl outline-double outline-zinc-300">

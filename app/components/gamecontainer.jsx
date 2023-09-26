@@ -54,14 +54,15 @@ export default function GameContainer() {
     setNewPlayerName(event.target.value);
   }
 
-  function removePlayer() {
-    if (playersArray.length > 0) {
+  function removePlayer(index) {
+    if ( index >= 0 && playersArray.length > 0 && index < playersArray.length) {
       event.preventDefault();
+
       const updatedPlayersArray = [...playersArray]; // create a new copy of the array
-      updatedPlayersArray.pop(); // removes the last item from the copy array
+      updatedPlayersArray.splice(index, 1); // remove the item at the index
       setPlayersArray(updatedPlayersArray); // update the state with the modified array
+
       console.log("player removed!", playersArray);
-      // this is important to do to follow best practices of react to not mutate states directly
     }
   }
 

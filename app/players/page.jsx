@@ -36,7 +36,7 @@ export default function PlayersPage(props) {
 
             <button
               className="px-1 py-0 ml-1 mr-1 font-bold text-white bg-red-700 rounded-xl hover:bg-red-900"
-              onClick={onRemovePlayer}
+              onClick={() => onRemovePlayer(index)}
             >
               -
             </button>
