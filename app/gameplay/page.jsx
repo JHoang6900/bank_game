@@ -3,11 +3,20 @@ import { useState } from "react";
 import { player, playersArray } from "../players/page.jsx";
 
 export default function GameplayPage(props) {
-  const { number, roll, onIncrement, onDouble, onNextRoll , onBankPlayers, } = props;
+  const {
+    number,
+    roll,
+    round,
+    onIncrement,
+    onDouble,
+    onNextRoll,
+    onBankPlayers,
+    onStartNewRound,
+  } = props;
 
   return (
     <div className="flex flex-col items-center justify-center w-full p-10 rounded-xl outline-double outline-zinc-300">
-      <p className="font-semibold leading-tight">Round 1/10</p>
+      <p className="font-semibold leading-tight">Round: {round}</p>
 
       <p className="pb-1 font-semibold">Roll: {roll}</p>
 
@@ -81,12 +90,20 @@ export default function GameplayPage(props) {
         </button>
 
         <button
-          className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
+          className={`px-4 py-2 mr-1 font-bold text-white rounded-full hover:bg-orange-700 ${
+            roll >= 3 ? "bg-cyan-950" : "bg-orange-400"
+          }`}
           onClick={() => {
-            for (let i = 0; i < 7; i++) {
-              onIncrement();
+            if (roll > 3) {
+              onStartNewRound();
             }
-            onNextRoll();
+
+            if (roll <= 3) {
+              for (let i = 0; i < 70; i++) {
+                onIncrement();
+              }
+              onNextRoll();
+            }
           }}
         >
           +7
