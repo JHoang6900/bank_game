@@ -94,7 +94,7 @@ export default function GameplayPage(props) {
             roll >= 3 ? "bg-cyan-950" : "bg-orange-400"
           }`}
           onClick={() => {
-            if (roll > 3) {
+            if (roll >= 3) {
               onStartNewRound();
             }
 
@@ -210,3 +210,8 @@ export default function GameplayPage(props) {
 // Undo, Redo, Home buttons
 
 // after a player banks, freeze their name and score (mute color or freeze icon)
+
+
+// 9/27
+// 7 button is broken; it ends the round and also rolls 7. 7 should only do one action. 
+// must click bank twice if all players are banked. 

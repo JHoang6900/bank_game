@@ -1,8 +1,11 @@
 // components/GameContainer.jsx
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from 'react';
 import PlayersPage from "../players/page";
 import GameplayPage from "../gameplay/page";
+
+
+
 
 export default function GameContainer() {
   // State for managing players and other shared state
@@ -38,31 +41,17 @@ export default function GameContainer() {
     setNumber((a) => a * 2);
   }
 
+  // Function to increment number of rolls.
   function nextRoll() {
     setRoll((a) => a + 1);
   }
 
+  // Function to increment the round count.
   function roundIncrement() {
     setRound((a) => a + 1);
   }
 
-  function bankPlayers() {
-    const updatedPlayersArray = playersArray.map((player) => {
-      if (player.isChecked && !player.hasBanked) {
-        return { ...player, score: player.score + number, hasBanked: true };
-      }
-      return player;
-    });
-
-    setPlayersArray(updatedPlayersArray);
-    console.log("Players banked!");
-    allPlayersBanked();
-  }
-
-  function updatePlayerName(event) {
-    setNewPlayerName(event.target.value);
-  }
-
+  // Function to remove a player
   function removePlayer(index) {
     if (index >= 0 && playersArray.length > 0 && index < playersArray.length) {
       event.preventDefault();
@@ -75,6 +64,7 @@ export default function GameContainer() {
     }
   }
 
+  // Function to toggle the checkbox next to a player. (This is used to indicate that a player has banked their score.)
   function toggleCheckbox(index) {
     if (index >= 0 && index < playersArray.length) {
       if (!playersArray[index].hasBanked) {
@@ -86,25 +76,55 @@ export default function GameContainer() {
     }
   }
 
-  function startNewRound() {
+  // This is my attempt at using useCallback to 'memoize' the function. It doesn't work.
+  const startNewRound = useCallback(() => {
     setNumber(0);
     setRoll(0);
     roundIncrement();
     console.log("New Round Started!");
-  
+
     const updatedPlayersArray = playersArray.map((player) => {
       return { ...player, hasBanked: false, isChecked: false };
     });
-  
+
     setPlayersArray(updatedPlayersArray);
+  }, [playersArray]);
+
+  
+// Another function checking if all players have banked. 
+  function allPlayersBanked() {
+    if (playersArray.every((player) => player.hasBanked === true)) {
+      return true;
+    }
+    return false;
   }
   
-
-  function allPlayersBanked(){
-    if (playersArray.every(player => player.hasBanked === true)) {
+  // my attempt at UseEffect. It doesn't work.
+  useEffect(() => {
+    // Check if all players have banked
+    if (playersArray.every((player) => player.hasBanked === true)) {
       startNewRound();
-      console.log("All players banked! New round started!")
+      console.log("All players banked! New round started!");
     }
+    
+    // This effect depends on playersArray and should run whenever it changes
+  }, [playersArray, startNewRound]);
+  
+
+
+  function bankPlayers() {
+    const updatedPlayersArray = playersArray.map((player) => {
+      if (player.isChecked && !player.hasBanked) {
+        return { ...player, score: player.score + number, hasBanked: true };
+      }
+      return player;
+    });
+
+    setPlayersArray(updatedPlayersArray);
+  }
+
+  function updatePlayerName(event) {
+    setNewPlayerName(event.target.value);
   }
 
   function debugPlayer() {
@@ -137,3 +157,43 @@ export default function GameContainer() {
     </div>
   );
 }
+
+
+// in vanilla javascript it would be this:
+
+// function bankPlayers() {
+//   const updatedPlayersArray = playersArray.map((player) => {
+//     if (player.isChecked && !player.hasBanked) {
+//       return { ...player, score: player.score + number, hasBanked: true };
+//     }
+//     return player;
+//   });
+
+//   setPlayersArray(updatedPlayersArray, () => {
+//     allPlayersBanked(); // check if all players have banked, if all players have banked, start a new round. if not, do nothing.
+//     console.log("Players banked!");
+//   });
+// }
+
+// which triggers allPlayersBanked() which is this:
+
+// function allPlayersBanked(){
+//   if (playersArray.every(player => player.hasBanked === true)) {
+//     startNewRound();
+//     console.log("All players banked! New round started!")
+//   }
+// }
+
+// which triggers startNewRound() if if-conditions are met which is this:
+
+// function startNewRound() {
+//   setNumber(0);
+//   setRoll(0);
+//   roundIncrement();
+//   console.log("New Round Started!");
+
+//   const updatedPlayersArray = playersArray.map((player) => {
+//     return { ...player, hasBanked: false, isChecked: false };
+//   });
+//   setPlayersArray(updatedPlayersArray);
+// }
