@@ -55,7 +55,7 @@ export default function GameContainer() {
       }
       return player;
     });
-  
+
     setPlayersArray(updatedPlayersArray);
     console.log("Players banked!");
   }
@@ -92,19 +92,18 @@ export default function GameContainer() {
     setRoll(0);
     roundIncrement();
     console.log("New Round Started!");
-  
+
     const updatedPlayersArray = playersArray.map((player) => {
       return { ...player, hasBanked: false, isChecked: false };
     });
-  
+
     setPlayersArray(updatedPlayersArray);
   }
-  
 
-  function allPlayersBanked(){
-    if (playersArray.every(player => player.hasBanked === true)) {
+  function allPlayersBanked() {
+    if (playersArray.every((player) => player.hasBanked === true)) {
       startNewRound();
-      console.log("All players banked! New round started!")
+      console.log("All players banked! New round started!");
     }
   }
 
@@ -113,7 +112,10 @@ export default function GameContainer() {
   }
 
   useEffect(() => {
-    if ( playersArray.length >= 1 && playersArray.every((player) => player.hasBanked === true)) {
+    if (
+      playersArray.length >= 1 &&
+      playersArray.every((player) => player.hasBanked === true)
+    ) {
       setShouldStartNewRound(true);
     } else {
       setShouldStartNewRound(false);

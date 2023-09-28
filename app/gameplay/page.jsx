@@ -94,11 +94,11 @@ export default function GameplayPage(props) {
             roll >= 3 ? "bg-cyan-950" : "bg-orange-400"
           }`}
           onClick={() => {
-            if (roll > 3) {
+            if (roll >= 3) {
               onStartNewRound();
             }
 
-            if (roll <= 3) {
+            if (roll < 3) {
               for (let i = 0; i < 70; i++) {
                 onIncrement();
               }
