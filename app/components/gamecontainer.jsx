@@ -1,6 +1,6 @@
 // components/GameContainer.jsx
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PlayersPage from "../players/page";
 import GameplayPage from "../gameplay/page";
 
@@ -11,6 +11,8 @@ export default function GameContainer() {
   const [number, setNumber] = useState(0);
   const [roll, setRoll] = useState(0);
   const [round, setRound] = useState(1);
+
+  const [shouldStartNewRound, setShouldStartNewRound] = useState(false);
 
   // Function to add a new player
   function addPlayer() {
@@ -53,10 +55,9 @@ export default function GameContainer() {
       }
       return player;
     });
-
+  
     setPlayersArray(updatedPlayersArray);
     console.log("Players banked!");
-    allPlayersBanked();
   }
 
   function updatePlayerName(event) {
@@ -110,6 +111,21 @@ export default function GameContainer() {
   function debugPlayer() {
     console.log("playersArray ~>", playersArray);
   }
+
+  useEffect(() => {
+    if (playersArray.every((player) => player.hasBanked === true)) {
+      setShouldStartNewRound(true);
+    } else {
+      setShouldStartNewRound(false);
+    }
+  }, [playersArray]);
+
+  useEffect(() => {
+    if (shouldStartNewRound) {
+      startNewRound();
+      console.log("All players banked! New round started!");
+    }
+  }, [shouldStartNewRound]);
 
   return (
     <div>
