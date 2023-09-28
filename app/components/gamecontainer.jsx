@@ -113,7 +113,7 @@ export default function GameContainer() {
   }
 
   useEffect(() => {
-    if (playersArray.every((player) => player.hasBanked === true)) {
+    if ( playersArray.length >= 1 && playersArray.every((player) => player.hasBanked === true)) {
       setShouldStartNewRound(true);
     } else {
       setShouldStartNewRound(false);
