@@ -27,6 +27,9 @@ export default function GameContainer() {
   const handleEndGame = () => {
     setGameEnded(true);
     setGameStarted(false);
+    setCurrentRound(0);
+    setRoll(0);
+    setNumber(0);
     console.log("Game end!");
   };
 

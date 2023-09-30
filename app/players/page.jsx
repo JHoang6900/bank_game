@@ -1,6 +1,4 @@
 "use client";
-import { playersArray } from "../components/gamecontainer";
-import { useState } from "react";
 
 export default function PlayersPage(props) {
   const {
@@ -133,15 +131,4 @@ export default function PlayersPage(props) {
   );
 }
 
-{
-  /* <button
-        className="px-24 py-2 mr-1 font-bold text-white bg-green-800 rounded-full hover:bg-orange-700"
-        onClick={startGame}
-      >
-        Start!
-
-      startGame should be a function that hides the setup UI elements. 
-      </button> */
-}
-
-// once hitting the bank button, a player's isBanked property should be locked to true.
+// switch font color to black when radio is checked in maxRoundGroup. 
