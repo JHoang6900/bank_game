@@ -4,20 +4,16 @@ import { useState } from "react";
 
 export default function PlayersPage(props) {
   const {
+    gameStarted,
     playersArray,
     newPlayerName,
     onAddPlayer,
     onToggleCheckbox,
     onUpdatePlayerName,
     onRemovePlayer,
+    onHandleStartGame,
     onDebugPlayer,
   } = props;
-
-  const [gameStarted, setGameStarted] = useState(false);
-
-  const handleStartGame = () => {
-    setGameStarted(true);
-  };
 
   return (
     <div className="flex flex-col items-center justify-center w-full p-10 mt-5 rounded-xl outline-double outline-zinc-300">
@@ -40,12 +36,18 @@ export default function PlayersPage(props) {
             <p className="mr-2 text-white">{player.name}</p>
             <p className="ml-2 mr-2 text-orange-200">{player.score}</p>
 
+
+            {!gameStarted && (
             <button
               className="px-1 py-0 ml-1 mr-1 font-bold text-white bg-red-700 rounded-xl hover:bg-red-900"
               onClick={() => onRemovePlayer(index)}
             >
               -
             </button>
+            )}
+
+
+
           </li>
         ))}
       </ul>
@@ -73,7 +75,7 @@ export default function PlayersPage(props) {
       {!gameStarted && (
         <button
           className="px-24 py-2 mr-1 font-bold text-white bg-green-800 rounded-full hover:bg-orange-700"
-          onClick={handleStartGame}
+          onClick={onHandleStartGame}
         >
           Start!
         </button>

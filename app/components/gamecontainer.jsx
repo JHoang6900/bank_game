@@ -14,6 +14,12 @@ export default function GameContainer() {
 
   const [shouldStartNewRound, setShouldStartNewRound] = useState(false);
 
+  const [gameStarted, setGameStarted] = useState(false);
+
+  const handleStartGame = () => {
+    setGameStarted(true);
+  };
+
   // Function to add a new player
   function addPlayer() {
     event.preventDefault();
@@ -146,10 +152,12 @@ export default function GameContainer() {
       <PlayersPage
         playersArray={playersArray}
         newPlayerName={newPlayerName}
+        gameStarted={gameStarted}
         onAddPlayer={addPlayer}
         onToggleCheckbox={toggleCheckbox}
         onUpdatePlayerName={updatePlayerName}
         onRemovePlayer={removePlayer}
+        onHandleStartGame={handleStartGame}
         onDebugPlayer={debugPlayer}
       />
     </div>
