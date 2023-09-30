@@ -10,14 +10,28 @@ export default function GameContainer() {
   const [newPlayerName, setNewPlayerName] = useState("");
   const [number, setNumber] = useState(0);
   const [roll, setRoll] = useState(0);
-  const [round, setRound] = useState(1);
+  const [currentRound, setCurrentRound] = useState(1);
+  const [maxRounds, setMaxRounds] = useState(10);
 
   const [shouldStartNewRound, setShouldStartNewRound] = useState(false);
 
   const [gameStarted, setGameStarted] = useState(false);
 
+  const [gameEnded, setGameEnded] = useState(false);
+
   const handleStartGame = () => {
     setGameStarted(true);
+    console.log("Game start!");
+  };
+
+  const handleEndGame = () => {
+    setGameEnded(true);
+    setGameStarted(false);
+    console.log("Game end!");
+  };
+
+  const handleSetMaxRounds = (value) => {
+    setMaxRounds(value);
   };
 
   // Function to add a new player
@@ -51,7 +65,7 @@ export default function GameContainer() {
   }
 
   function roundIncrement() {
-    setRound((a) => a + 1);
+    setCurrentRound((a) => a + 1);
   }
 
   function bankPlayers() {
@@ -135,17 +149,24 @@ export default function GameContainer() {
     }
   }, [shouldStartNewRound]);
 
+  useEffect(() => {
+    if (currentRound > maxRounds) {
+      handleEndGame();
+      console.log("Rounds are finished. Game over!");
+    }
+  }, [currentRound]);
+
   return (
     <div>
       <GameplayPage
         number={number}
         roll={roll}
-        round={round}
+        currentRound={currentRound}
+        maxRounds={maxRounds}
         onIncrement={increment}
         onNextRoll={nextRoll}
         onDouble={double}
         onBankPlayers={bankPlayers}
-        // onRoundIncrement={roundIncrement}
         onStartNewRound={startNewRound}
       />
 
@@ -158,6 +179,8 @@ export default function GameContainer() {
         onUpdatePlayerName={updatePlayerName}
         onRemovePlayer={removePlayer}
         onHandleStartGame={handleStartGame}
+        maxRounds={maxRounds}
+        onSetMaxRounds={handleSetMaxRounds}
         onDebugPlayer={debugPlayer}
       />
     </div>

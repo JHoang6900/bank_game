@@ -13,6 +13,8 @@ export default function PlayersPage(props) {
     onRemovePlayer,
     onHandleStartGame,
     onDebugPlayer,
+    maxRounds,
+    onSetMaxRounds,
   } = props;
 
   return (
@@ -51,6 +53,28 @@ export default function PlayersPage(props) {
           </li>
         ))}
       </ul>
+
+      <div className="flex align-middle bg-white">
+  <div className="relative">
+    <input
+      type="number"
+      value={maxRounds}
+      onChange={(e) => {
+        const newValue = parseInt(e.target.value);
+        const finalValue = newValue < 5 ? 5 : newValue;
+        onSetMaxRounds(finalValue);
+      }}
+      placeholder="10"
+      className="pr-2 text-black focus:outline-none" // Adjust padding
+    />
+    <p className="absolute flex items-center text-black pointer-events-none inset-y-1 inset-6 right-2">
+      Max Rounds
+    </p>
+  </div>
+</div>
+
+
+
 
       {!gameStarted && (
  <form>
