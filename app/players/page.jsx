@@ -10,8 +10,14 @@ export default function PlayersPage(props) {
     onToggleCheckbox,
     onUpdatePlayerName,
     onRemovePlayer,
-    onDebugPlayer
+    onDebugPlayer,
   } = props;
+
+  const [gameStarted, setGameStarted] = useState(false);
+
+  const handleStartGame = () => {
+    setGameStarted(true);
+  };
 
   return (
     <div className="flex flex-col items-center justify-center w-full p-10 mt-5 rounded-xl outline-double outline-zinc-300">
@@ -44,25 +50,37 @@ export default function PlayersPage(props) {
         ))}
       </ul>
 
-      <form>
-        <input
-          type="text"
-          placeholder="Player Name"
-          value={newPlayerName}
-          onChange={onUpdatePlayerName}
-        ></input>
+      {!gameStarted && (
+ <form>
+ <input
+   type="text"
+   placeholder="Player Name"
+   value={newPlayerName}
+   onChange={onUpdatePlayerName}
+ ></input>
 
+ <button
+   className="px-4 py-2 ml-1 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
+   type="submit"
+   onClick={onAddPlayer}
+ >
+   +
+ </button>
+</form>
+)}
+     
+
+      {!gameStarted && (
         <button
-          className="px-4 py-2 ml-1 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
-          type="submit"
-          onClick={onAddPlayer}
+          className="px-24 py-2 mr-1 font-bold text-white bg-green-800 rounded-full hover:bg-orange-700"
+          onClick={handleStartGame}
         >
-          +
+          Start!
         </button>
-      </form>
+      )}
 
       <button
-        className="px-24 py-2 mr-1 font-bold text-white bg-green-800 rounded-full hover:bg-orange-700"
+        className="px-24 py-2 mt-1 mr-1 font-bold text-white bg-green-800 rounded-full hover:bg-orange-700"
         onClick={onDebugPlayer}
       >
         Debug!
