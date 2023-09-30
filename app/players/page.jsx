@@ -54,25 +54,43 @@ export default function PlayersPage(props) {
         ))}
       </ul>
 
-      <div className="flex align-middle bg-white">
-  <div className="relative">
+      {!gameStarted && (
+        <div id="maxRoundGroup" className="my-4">
+  <label className="inline-flex items-center mr-6">
     <input
-      type="number"
-      value={maxRounds}
-      onChange={(e) => {
-        const newValue = parseInt(e.target.value);
-        const finalValue = newValue < 5 ? 5 : newValue;
-        onSetMaxRounds(finalValue);
-      }}
-      placeholder="10"
-      className="pr-2 text-black focus:outline-none" // Adjust padding
+      className="mr-1 text-white"
+      type="radio"
+      value={10}
+      checked={maxRounds === 10}
+      onChange={() => onSetMaxRounds(10)}
     />
-    <p className="absolute flex items-center text-black pointer-events-none inset-y-1 inset-6 right-2">
-      Max Rounds
-    </p>
-  </div>
+    <span className="text-white">10 Rounds</span>
+  </label>
+
+  <label className="inline-flex items-center mr-6">
+    <input
+      className="mr-1 text-white"
+      type="radio"
+      value={15}
+      checked={maxRounds === 15}
+      onChange={() => onSetMaxRounds(15)}
+    />
+    <span className="text-white">15 Rounds</span>
+  </label>
+
+  <label className="inline-flex items-center">
+    <input
+      className="mr-1 text-white "
+      type="radio"
+      value={20}
+      checked={maxRounds === 20}
+      onChange={() => onSetMaxRounds(20)}
+    />
+    <span className="text-white">20 Rounds</span>
+  </label>
 </div>
 
+      )}
 
 
 
