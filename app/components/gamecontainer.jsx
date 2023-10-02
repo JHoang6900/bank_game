@@ -132,13 +132,6 @@ export default function GameContainer() {
     setPlayersArray(updatedPlayersArray);
   }
 
-  function allPlayersBanked() {
-    if (playersArray.every((player) => player.hasBanked === true)) {
-      startNewRound();
-      console.log("All players banked! New round started!");
-    }
-  }
-
   function debugPlayer() {
     console.log("playersArray ~>", playersArray);
   }
