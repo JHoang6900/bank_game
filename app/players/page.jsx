@@ -3,6 +3,7 @@
 export default function PlayersPage(props) {
   const {
     gameStarted,
+    gameEnded,
     playersArray,
     newPlayerName,
     onAddPlayer,
@@ -14,6 +15,14 @@ export default function PlayersPage(props) {
     maxRounds,
     onSetMaxRounds,
   } = props;
+
+
+  const highestScore = playersArray.reduce((maxScore, player) => {
+    return player.score > maxScore ? player.score : maxScore;
+  }, 0);
+  
+  // const winners = playersArray.filter((player) => player.score === highestScore);
+  
 
   return (
     <div className="flex flex-col items-center justify-center w-full p-10 mt-5 rounded-xl outline-double outline-zinc-300">
@@ -35,6 +44,12 @@ export default function PlayersPage(props) {
 
             <p className="mr-2 text-white">{player.name}</p>
             <p className="ml-2 mr-2 text-orange-200">{player.score}</p>
+            
+            {gameEnded && player.score === highestScore && (
+      <span role="img" aria-label="trophy" className="text-orange-200">
+        🏆
+      </span>
+    )}
 
 
             {!gameStarted && (
@@ -127,6 +142,7 @@ export default function PlayersPage(props) {
       >
         Debug!
       </button>
+
     </div>
   );
 }

@@ -20,7 +20,16 @@ export default function GameContainer() {
   const [gameEnded, setGameEnded] = useState(false);
 
   const handleStartGame = () => {
+    setGameEnded(false);
     setGameStarted(true);
+    
+
+    const updatedPlayersArray = playersArray.map((player) => {
+      return { ...player, hasBanked: false, isChecked: false, score: 0 };
+    });
+
+    setPlayersArray(updatedPlayersArray);
+
     console.log("Game start!");
   };
 
@@ -177,6 +186,7 @@ export default function GameContainer() {
         playersArray={playersArray}
         newPlayerName={newPlayerName}
         gameStarted={gameStarted}
+        gameEnded={gameEnded}
         onAddPlayer={addPlayer}
         onToggleCheckbox={toggleCheckbox}
         onUpdatePlayerName={updatePlayerName}
