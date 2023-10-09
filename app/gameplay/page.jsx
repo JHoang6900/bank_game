@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { player, playersArray } from "../players/page.jsx";
 
 export default function GameplayPage(props) {
   const {
@@ -11,8 +10,12 @@ export default function GameplayPage(props) {
     onIncrement,
     onDouble,
     onNextRoll,
+    onNextPlayer,
     onBankPlayers,
     onStartNewRound,
+    currentPlayerIndex,
+    playersArray,
+    gameStarted,
   } = props;
 
   return (
@@ -20,6 +23,9 @@ export default function GameplayPage(props) {
       <p className="font-semibold leading-tight">Round: {currentRound}/{maxRounds}</p>
 
       <p className="pb-1 font-semibold">Roll: {roll}</p>
+      <p>{gameStarted && playersArray.length > 0 ? `${playersArray[currentPlayerIndex].name}'s Turn` : "Game not started!"}</p>
+
+
 
       <h1 className="font-semibold text-yellow-500 text-7xl">{number}</h1>
       <p className="pb-2 text-lg font-semibold">Round Total</p>
@@ -35,6 +41,7 @@ export default function GameplayPage(props) {
               onIncrement();
             }
             onNextRoll();
+            onNextPlayer();
           }}
         >
           +2
@@ -47,6 +54,7 @@ export default function GameplayPage(props) {
               onIncrement();
             }
             onNextRoll();
+            onNextPlayer();
           }}
         >
           +3
@@ -59,6 +67,7 @@ export default function GameplayPage(props) {
               onIncrement();
             }
             onNextRoll();
+            onNextPlayer();
           }}
         >
           +4
@@ -71,6 +80,7 @@ export default function GameplayPage(props) {
               onIncrement();
             }
             onNextRoll();
+            onNextPlayer();
           }}
         >
           +5
@@ -85,6 +95,7 @@ export default function GameplayPage(props) {
               onIncrement();
             }
             onNextRoll();
+            onNextPlayer();
           }}
         >
           +6
@@ -97,6 +108,7 @@ export default function GameplayPage(props) {
           onClick={() => {
             if (roll >= 3) {
               onStartNewRound();
+              onNextPlayer();
             }
 
             if (roll < 3) {
@@ -104,6 +116,7 @@ export default function GameplayPage(props) {
                 onIncrement();
               }
               onNextRoll();
+              onNextPlayer();
             }
           }}
         >
@@ -117,6 +130,7 @@ export default function GameplayPage(props) {
               onIncrement();
             }
             onNextRoll();
+            onNextPlayer();
           }}
         >
           +8
@@ -129,6 +143,7 @@ export default function GameplayPage(props) {
               onIncrement();
             }
             onNextRoll();
+            onNextPlayer();
           }}
         >
           +9
@@ -146,6 +161,7 @@ export default function GameplayPage(props) {
               onIncrement();
             }
             onNextRoll();
+            onNextPlayer();
           }}
         >
           +10
@@ -158,6 +174,7 @@ export default function GameplayPage(props) {
               onIncrement();
             }
             onNextRoll();
+            onNextPlayer();
           }}
         >
           +11
@@ -170,6 +187,7 @@ export default function GameplayPage(props) {
               onIncrement();
             }
             onNextRoll();
+            onNextPlayer();
           }}
         >
           +12
@@ -185,6 +203,7 @@ export default function GameplayPage(props) {
           onClick={() => {
             onDouble();
             onNextRoll();
+            onNextPlayer();
           }}
         >
           x2

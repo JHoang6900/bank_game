@@ -19,19 +19,26 @@ export default function GameContainer() {
 
   const [gameEnded, setGameEnded] = useState(false);
 
+  const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
+
   const handleStartGame = () => {
     setGameEnded(false);
     setGameStarted(true);
-    
 
     const updatedPlayersArray = playersArray.map((player) => {
       return { ...player, hasBanked: false, isChecked: false, score: 0 };
     });
-
     setPlayersArray(updatedPlayersArray);
-
     console.log("Game start!");
   };
+
+  function nextPlayer() {
+    setCurrentPlayerIndex((a) => a + 1);
+
+    if (currentPlayerIndex >= playersArray.length - 1) {
+      setCurrentPlayerIndex(0);
+    }
+  }
 
   const handleEndGame = () => {
     setGameEnded(true);
@@ -167,12 +174,16 @@ export default function GameContainer() {
         number={number}
         roll={roll}
         currentRound={currentRound}
+        onNextPlayer={nextPlayer}
         maxRounds={maxRounds}
         onIncrement={increment}
         onNextRoll={nextRoll}
         onDouble={double}
         onBankPlayers={bankPlayers}
         onStartNewRound={startNewRound}
+        currentPlayerIndex={currentPlayerIndex}
+        playersArray={playersArray}
+        gameStarted={gameStarted}
       />
 
       <PlayersPage
