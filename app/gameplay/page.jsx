@@ -121,15 +121,43 @@ export default function GameplayPage(props) {
             }
 
             if (roll > 3 && currentRound >= maxRounds - 5) {
-
+              // Create a copy of the players array
               const updatedPlayersArray = [...playersArray];
-
-
-              updatedPlayersArray[currentPlayerIndex].score = updatedPlayersArray[currentPlayerIndex].score - number
-                setPlayersArray(updatedPlayersArray);
-                console.log(`Unlucky! ${playersArray[currentPlayerIndex].name} rolled a 7..! ${number} points deducted! ${playersArray[currentPlayerIndex].name}'s score is now ${playersArray[currentPlayerIndex].score}!`);
-             
+            
+              // Sort the players based on their scores in descending order (highest score first)
+              updatedPlayersArray.sort((a, b) => b.score - a.score);
+            
+              // Find the index of the current player in the sorted array
+              const currentPlayerIndexInSortedArray = updatedPlayersArray.findIndex(player => player === playersArray[currentPlayerIndex]);
+            
+              // Apply the penalty based on the player's rank
+              let penaltyPercentage;
+              if (currentPlayerIndexInSortedArray === 0) {
+                penaltyPercentage = 0.8; // Leading Player: Deduct 80% of the total number
+              } else if (currentPlayerIndexInSortedArray === 1) {
+                penaltyPercentage = 0.7; // 2nd Place Player: Deduct 70% of the total number
+              } else if (currentPlayerIndexInSortedArray === 2) {
+                penaltyPercentage = 0.6; // 3rd Place Player: Deduct 60% of the total number
+              } else {
+                penaltyPercentage = 0.4; // 4th Place or Lower: Deduct 40% of the total number
+              }
+            
+              // Calculate the penalty amount
+              const penaltyAmount = penaltyPercentage * number;
+            
+              // Deduct the penalty amount from the current player's score
+              updatedPlayersArray[currentPlayerIndex].score -= penaltyAmount;
+            
+              // Update the state with the modified array
+              setPlayersArray(updatedPlayersArray);
+            
+              console.log(`Unlucky! ${playersArray[currentPlayerIndex].name} rolled a 7..!
+              ${playersArray[currentPlayerIndex].name} is in ${currentPlayerIndexInSortedArray + 1}th place.
+              ${penaltyPercentage} of ${number} will be deducted. 
+              ${penaltyAmount} points deducted! 
+              ${playersArray[currentPlayerIndex].name}'s score is now ${playersArray[currentPlayerIndex].score}!`);
             }
+            
           }}
         >
           +7
