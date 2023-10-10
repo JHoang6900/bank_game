@@ -184,6 +184,7 @@ export default function GameContainer() {
         currentPlayerIndex={currentPlayerIndex}
         playersArray={playersArray}
         gameStarted={gameStarted}
+        setPlayersArray={setPlayersArray}
       />
 
       <PlayersPage

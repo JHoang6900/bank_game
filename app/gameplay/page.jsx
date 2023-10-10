@@ -16,6 +16,7 @@ export default function GameplayPage(props) {
     currentPlayerIndex,
     playersArray,
     gameStarted,
+    setPlayersArray,
   } = props;
 
   return (
@@ -117,6 +118,17 @@ export default function GameplayPage(props) {
               }
               onNextRoll();
               onNextPlayer();
+            }
+
+            if (roll > 3 && currentRound >= maxRounds - 5) {
+
+              const updatedPlayersArray = [...playersArray];
+
+
+              updatedPlayersArray[currentPlayerIndex].score = updatedPlayersArray[currentPlayerIndex].score - number
+                setPlayersArray(updatedPlayersArray);
+                console.log(`Unlucky! ${playersArray[currentPlayerIndex].name} rolled a 7..! ${number} points deducted! ${playersArray[currentPlayerIndex].name}'s score is now ${playersArray[currentPlayerIndex].score}!`);
+             
             }
           }}
         >
