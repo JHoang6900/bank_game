@@ -107,20 +107,8 @@ export default function GameplayPage(props) {
             roll >= 3 ? "bg-cyan-950" : "bg-orange-400"
           }`}
           onClick={() => {
-            if (roll >= 3) {
-              onStartNewRound();
-              onNextPlayer();
-            }
 
-            if (roll < 3) {
-              for (let i = 0; i < 70; i++) {
-                onIncrement();
-              }
-              onNextRoll();
-              onNextPlayer();
-            }
-
-            if (roll > 3 && currentRound >= maxRounds - 5) {
+            if (roll >= 3 && currentRound >= maxRounds - 5) {
               // Create a copy of the players array
               const updatedPlayersArray = [...playersArray];
             
@@ -158,6 +146,21 @@ export default function GameplayPage(props) {
               ${penaltyAmount} points deducted! 
               ${playersArray[currentPlayerIndex].name}'s score is now ${playersArray[currentPlayerIndex].score}!`);
             }
+
+
+            if (roll >= 3) {
+              onStartNewRound();
+              onNextPlayer();
+            }
+
+            if (roll < 3) {
+              for (let i = 0; i < 70; i++) {
+                onIncrement();
+              }
+              onNextRoll();
+              onNextPlayer();
+            }
+
             
           }}
         >

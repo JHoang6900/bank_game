@@ -204,3 +204,8 @@ export default function GameContainer() {
     </div>
   );
 }
+
+// fix: negative scores 
+// fix: UseEffect for auto sort 
+// undo button 
+// 
