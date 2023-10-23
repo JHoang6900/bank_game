@@ -17,6 +17,7 @@ export default function GameplayPage(props) {
     playersArray,
     gameStarted,
     setPlayersArray,
+    setCurrentPlayerIndex,
   } = props;
 
   return (
@@ -24,7 +25,8 @@ export default function GameplayPage(props) {
       <p className="font-semibold leading-tight">Round: {currentRound}/{maxRounds}</p>
 
       <p className="pb-1 font-semibold">Roll: {roll}</p>
-      <p>{gameStarted && playersArray.length > 0 ? `${playersArray[currentPlayerIndex].name}'s Turn` : "Game not started!"}</p>
+      {/* <p>{gameStarted && playersArray.length > 0 ? `${playersArray[currentPlayerIndex].name}'s Turn` : "Game not started!"}</p> */}
+      <p className="pb-1 font-semibold">{gameStarted && playersArray.length > 0 ? `${playersArray[currentPlayerIndex].name}'s Turn` : "Game not started!"}</p>
 
 
 
@@ -118,6 +120,9 @@ export default function GameplayPage(props) {
               // Find the index of the current player in the sorted array
               const currentPlayerIndexInSortedArray = updatedPlayersArray.findIndex(player => player === playersArray[currentPlayerIndex]);
             
+              // Update currentPlayerIndex to the new index in the sorted array
+              setCurrentPlayerIndex(currentPlayerIndexInSortedArray);
+            
               // Apply the penalty based on the player's rank
               let penaltyPercentage;
               if (currentPlayerIndexInSortedArray === 0) {
@@ -133,19 +138,19 @@ export default function GameplayPage(props) {
               // Calculate the penalty amount
               const penaltyAmount = penaltyPercentage * number;
             
-              // Deduct the penalty amount from the current player's score using subtraction assignment operator. (e.g. x -= y is equivalent to x = x - y)
-              updatedPlayersArray[currentPlayerIndex].score -= penaltyAmount;
-              // updatedPlayersArray[currentPlayerIndex].score = updatedPlayersArray[currentPlayerIndex].score - penaltyAmount;
+              // Deduct the penalty amount from the current player's score
+              updatedPlayersArray[currentPlayerIndexInSortedArray].score -= penaltyAmount;
             
               // Update the state with the modified array
               setPlayersArray(updatedPlayersArray);
             
-              console.log(`Unlucky! ${playersArray[currentPlayerIndex].name} rolled a 7..!
-              ${playersArray[currentPlayerIndex].name} is in ${currentPlayerIndexInSortedArray + 1}th place.
-              ${penaltyPercentage} of ${number} will be deducted. 
-              ${penaltyAmount} points deducted! 
-              ${playersArray[currentPlayerIndex].name}'s score is now ${playersArray[currentPlayerIndex].score}!`);
+              console.log(`Unlucky! ${updatedPlayersArray[currentPlayerIndexInSortedArray].name} rolled a 7..!
+                ${updatedPlayersArray[currentPlayerIndexInSortedArray].name} is in ${currentPlayerIndexInSortedArray + 1}th place.
+                ${penaltyPercentage} of ${number} will be deducted.
+                ${penaltyAmount} points deducted!
+                ${updatedPlayersArray[currentPlayerIndexInSortedArray].name}'s score is now ${updatedPlayersArray[currentPlayerIndexInSortedArray].score}!`);
             }
+            
 
 
             if (roll >= 3) {
@@ -274,3 +279,5 @@ export default function GameplayPage(props) {
 // Undo, Redo, Home buttons
 
 // after a player banks, freeze their name and score (mute color or freeze icon)
+
+// after banking type player out of roll index
