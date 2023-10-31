@@ -283,6 +283,8 @@ export default function GameplayPage(props) {
 // Undo Button inside box vs across bottom of screen
 // Undo, Redo, Home buttons
 
-// after a player banks, freeze their name and score (mute color or freeze icon)
+// after a player banks, change background color to orange.
 
+// done:
 // after banking type player out of roll index
+// fixed negative scores

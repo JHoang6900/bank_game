@@ -14,20 +14,18 @@ export default function PlayersPage(props) {
     onDebugPlayer,
     maxRounds,
     onSetMaxRounds,
+    highestScore,
   } = props;
 
-  const highestScore = playersArray.reduce((maxScore, player) => {
-    return player.score > maxScore ? player.score : maxScore;
-  }, 0);
 
-  // const winners = playersArray.filter((player) => player.score === highestScore);
+
 
   return (
     <div className="flex flex-col items-center justify-center w-full p-10 mt-5 rounded-xl outline-double outline-zinc-300">
       <h1 className="font-bold">PLAYERS: </h1>
 
       <ul>
-        {playersArray.map((player, index) => (
+        {playersArray?.map((player, index) => (
           <li
             key={index}
             className="flex flex-row p-1.5 border rounded-lg border-zinc-400 m-1"

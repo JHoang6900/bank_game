@@ -32,6 +32,10 @@ export default function GameContainer() {
     console.log("Game start!");
   };
 
+  const highestScore = playersArray.reduce((maxScore, player) => {
+    return player.score > maxScore ? player.score : maxScore;
+  }, 0);
+
   function nextPlayer() {
     // Create a copy of the players array
     const updatedPlayersArray = [...playersArray];
@@ -214,6 +218,7 @@ export default function GameContainer() {
         maxRounds={maxRounds}
         onSetMaxRounds={handleSetMaxRounds}
         onDebugPlayer={debugPlayer}
+        highestScore={highestScore}
       />
     </div>
   );
