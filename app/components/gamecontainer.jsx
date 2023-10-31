@@ -220,6 +220,7 @@ export default function GameContainer() {
 }
 
 // fix: negative scores 
+// fix: decimal scores
 // fix: UseEffect for auto sort 
 // undo button 
 // 

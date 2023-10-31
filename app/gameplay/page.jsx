@@ -136,7 +136,7 @@ export default function GameplayPage(props) {
               }
             
               // Calculate the penalty amount
-              const penaltyAmount = penaltyPercentage * number;
+              const penaltyAmount = Math.round(penaltyPercentage*number)
             
               // Deduct the penalty amount from the current player's score
               updatedPlayersArray[currentPlayerIndexInSortedArray].score -= penaltyAmount;
