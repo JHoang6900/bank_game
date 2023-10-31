@@ -33,12 +33,25 @@ export default function GameContainer() {
   };
 
   function nextPlayer() {
-    setCurrentPlayerIndex((a) => a + 1);
-
-    if (currentPlayerIndex >= playersArray.length - 1) {
-      setCurrentPlayerIndex(0);
+    // Create a copy of the players array
+    const updatedPlayersArray = [...playersArray];
+  
+    // Start with the current player's index
+    let nextIndex = currentPlayerIndex;
+  
+    // Use a while loop to find the next player who hasn't banked
+    while (true) {
+      nextIndex = (nextIndex + 1) % updatedPlayersArray.length; // Move to the next player in a circular fashion
+  
+      if (!updatedPlayersArray[nextIndex].hasBanked) {
+        break; // Exit the loop when a player who hasn't banked is found
+      }
     }
+  
+    // Update currentPlayerIndex
+    setCurrentPlayerIndex(nextIndex);
   }
+  
 
   const handleEndGame = () => {
     setGameEnded(true);
