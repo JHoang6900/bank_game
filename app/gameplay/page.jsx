@@ -139,7 +139,11 @@ export default function GameplayPage(props) {
               const penaltyAmount = Math.round(penaltyPercentage*number)
             
               // Deduct the penalty amount from the current player's score
-              updatedPlayersArray[currentPlayerIndexInSortedArray].score -= penaltyAmount;
+              if (updatedPlayersArray[currentPlayerIndexInSortedArray].score - penaltyAmount < 0) {
+                updatedPlayersArray[currentPlayerIndexInSortedArray].score = 0;
+                console.log(`Unlucky! ${updatedPlayersArray[currentPlayerIndexInSortedArray].name} can't go below 0!`);
+              } else {
+              updatedPlayersArray[currentPlayerIndexInSortedArray].score = updatedPlayersArray[currentPlayerIndexInSortedArray].score - penaltyAmount;
             
               // Update the state with the modified array
               setPlayersArray(updatedPlayersArray);
@@ -150,6 +154,7 @@ export default function GameplayPage(props) {
                 ${penaltyAmount} points deducted!
                 ${updatedPlayersArray[currentPlayerIndexInSortedArray].name}'s score is now ${updatedPlayersArray[currentPlayerIndexInSortedArray].score}!`);
             }
+          }
             
 
 
@@ -166,7 +171,7 @@ export default function GameplayPage(props) {
               onNextPlayer();
             }
 
-            
+          
           }}
         >
           +7
