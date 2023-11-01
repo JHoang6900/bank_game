@@ -21,7 +21,7 @@ export default function GameplayPage(props) {
   } = props;
 
   return (
-    <div className="flex flex-col items-center justify-center w-full p-10 rounded-xl outline-double outline-zinc-300">
+    <div className="flex flex-col items-center justify-center w-full p-8 mb-6 rounded-xl outline-double outline-zinc-400">
       <p className="font-semibold leading-tight">Round: {currentRound}/{maxRounds}</p>
 
       <p className="pb-1 font-semibold">Roll: {roll}</p>
