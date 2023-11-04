@@ -20,15 +20,23 @@ export default function GameplayPage(props) {
     setCurrentPlayerIndex,
   } = props;
 
+  const [penaltyMessage, setPenaltyMessage] = useState("");
+
   return (
-    <div className="flex flex-col items-center justify-center w-full p-8 mb-6 rounded-xl outline-double outline-zinc-400">
-      <p className="font-semibold leading-tight">Round: {currentRound}/{maxRounds}</p>
+    <div className="flex flex-col items-center justify-center w-full p-8 mb-6 rounded-2xl outline-double outline-zinc-400">
+      <p className="font-semibold leading-tight">
+        Round: {currentRound}/{maxRounds}
+      </p>
 
       <p className="pb-1 font-semibold">Roll: {roll}</p>
       {/* <p>{gameStarted && playersArray.length > 0 ? `${playersArray[currentPlayerIndex].name}'s Turn` : "Game not started!"}</p> */}
-      <p className="pb-1 font-semibold">{gameStarted && playersArray.length > 0 ? `${playersArray[currentPlayerIndex].name}'s Turn` : "Game not started!"}</p>
+      <p className="pb-1 font-semibold">
+        {gameStarted && playersArray.length > 0
+          ? `${playersArray[currentPlayerIndex].name}'s Turn`
+          : "Game not started!"}
+      </p>
 
-
+      <div className="flex items-center justify-center">{penaltyMessage}</div>
 
       <h1 className="font-semibold text-yellow-500 text-7xl">{number}</h1>
       <p className="pb-2 text-lg font-semibold">Round Total</p>
@@ -109,20 +117,22 @@ export default function GameplayPage(props) {
             roll >= 3 ? "bg-cyan-950" : "bg-orange-400"
           }`}
           onClick={() => {
-
             if (roll >= 3 && currentRound >= maxRounds - 5) {
               // Create a copy of the players array
               const updatedPlayersArray = [...playersArray];
-            
+
               // Sort the players based on their scores in descending order (highest score first)
               updatedPlayersArray.sort((a, b) => b.score - a.score);
-            
+
               // Find the index of the current player in the sorted array
-              const currentPlayerIndexInSortedArray = updatedPlayersArray.findIndex(player => player === playersArray[currentPlayerIndex]);
-            
+              const currentPlayerIndexInSortedArray =
+                updatedPlayersArray.findIndex(
+                  (player) => player === playersArray[currentPlayerIndex]
+                );
+
               // Update currentPlayerIndex to the new index in the sorted array
               setCurrentPlayerIndex(currentPlayerIndexInSortedArray);
-            
+
               // Apply the penalty based on the player's rank
               let penaltyPercentage;
               if (currentPlayerIndexInSortedArray === 0) {
@@ -134,29 +144,37 @@ export default function GameplayPage(props) {
               } else {
                 penaltyPercentage = 0.4; // 4th Place or Lower: Deduct 40% of the total number
               }
-            
-              // Calculate the penalty amount
-              const penaltyAmount = Math.round(penaltyPercentage*number)
-            
-              // Deduct the penalty amount from the current player's score
-              if (updatedPlayersArray[currentPlayerIndexInSortedArray].score - penaltyAmount < 0) {
-                updatedPlayersArray[currentPlayerIndexInSortedArray].score = 0;
-                console.log(`Unlucky! ${updatedPlayersArray[currentPlayerIndexInSortedArray].name} can't go below 0!`);
-              } else {
-              updatedPlayersArray[currentPlayerIndexInSortedArray].score = updatedPlayersArray[currentPlayerIndexInSortedArray].score - penaltyAmount;
-            
-              // Update the state with the modified array
-              setPlayersArray(updatedPlayersArray);
-            
-              console.log(`Unlucky! ${updatedPlayersArray[currentPlayerIndexInSortedArray].name} rolled a 7..!
-                ${updatedPlayersArray[currentPlayerIndexInSortedArray].name} is in ${currentPlayerIndexInSortedArray + 1}th place.
-                ${penaltyPercentage} of ${number} will be deducted.
-                ${penaltyAmount} points deducted!
-                ${updatedPlayersArray[currentPlayerIndexInSortedArray].name}'s score is now ${updatedPlayersArray[currentPlayerIndexInSortedArray].score}!`);
-            }
-          }
-            
 
+              // Calculate the penalty amount
+              const penaltyAmount = Math.round(penaltyPercentage * number);
+
+              // Deduct the penalty amount from the current player's score
+              if (
+                updatedPlayersArray[currentPlayerIndexInSortedArray].score -
+                  penaltyAmount <
+                0
+              ) {
+                updatedPlayersArray[currentPlayerIndexInSortedArray].score = 0;
+                console.log(
+                  `Unlucky! ${updatedPlayersArray[currentPlayerIndexInSortedArray].name} can't go below 0!`
+                );
+              } else {
+                updatedPlayersArray[currentPlayerIndexInSortedArray].score =
+                  updatedPlayersArray[currentPlayerIndexInSortedArray].score -
+                  penaltyAmount;
+
+                // Update the state with the modified array
+                setPlayersArray(updatedPlayersArray);
+
+                setPenaltyMessage(
+                  <div className="flex items-center justify-center text-center text-orange-300">
+                    <p> Unlucky! {updatedPlayersArray[currentPlayerIndexInSortedArray].name} rolled a 7! <br />
+                      {currentPlayerIndexInSortedArray + 1}th place loses {penaltyPercentage} of {number}. (-{penaltyAmount} points!! 😱) </p>
+                  </div>
+                );
+                
+              }
+            }
 
             if (roll >= 3) {
               onStartNewRound();
@@ -170,8 +188,6 @@ export default function GameplayPage(props) {
               onNextRoll();
               onNextPlayer();
             }
-
-          
           }}
         >
           +7

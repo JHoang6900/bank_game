@@ -21,7 +21,7 @@ export default function PlayersPage(props) {
 
 
   return (
-    <div className="flex flex-col items-center justify-center w-full p-2 rounded-xl outline-double outline-zinc-300">
+    <div className="flex flex-col items-center justify-center w-full p-2 rounded-2xl outline-double outline-zinc-300">
       <h1 className="font-bold">PLAYERS: </h1>
 
       <ul>
