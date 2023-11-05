@@ -53,6 +53,12 @@ export default function GameplayPage(props) {
             }
             onNextRoll();
             onNextPlayer();
+            
+            setPenaltyMessage(
+              <div className="flex items-center justify-center text-center text-orange-300">
+                <p></p>
+              </div>
+            );
           }}
         >
           +2
@@ -66,6 +72,12 @@ export default function GameplayPage(props) {
             }
             onNextRoll();
             onNextPlayer();
+            
+            setPenaltyMessage(
+              <div className="flex items-center justify-center text-center text-orange-300">
+                <p></p>
+              </div>
+            );
           }}
         >
           +3
@@ -79,6 +91,12 @@ export default function GameplayPage(props) {
             }
             onNextRoll();
             onNextPlayer();
+                        
+            setPenaltyMessage(
+              <div className="flex items-center justify-center text-center text-orange-300">
+                <p></p>
+              </div>
+            );
           }}
         >
           +4
@@ -92,6 +110,12 @@ export default function GameplayPage(props) {
             }
             onNextRoll();
             onNextPlayer();
+                        
+            setPenaltyMessage(
+              <div className="flex items-center justify-center text-center text-orange-300">
+                <p></p>
+              </div>
+            );
           }}
         >
           +5
@@ -107,6 +131,12 @@ export default function GameplayPage(props) {
             }
             onNextRoll();
             onNextPlayer();
+                        
+            setPenaltyMessage(
+              <div className="flex items-center justify-center text-center text-orange-300">
+                <p></p>
+              </div>
+            );
           }}
         >
           +6
@@ -155,9 +185,16 @@ export default function GameplayPage(props) {
                 0
               ) {
                 updatedPlayersArray[currentPlayerIndexInSortedArray].score = 0;
-                console.log(
-                  `Unlucky! ${updatedPlayersArray[currentPlayerIndexInSortedArray].name} can't go below 0!`
+
+                setPenaltyMessage(
+                  
+                  <div className="flex items-center justify-center text-center text-orange-300">
+                  <p> Oh no! {updatedPlayersArray[currentPlayerIndexInSortedArray].name} can't go below 0! </p>
+                  </div>
+
                 );
+
+                
               } else {
                 updatedPlayersArray[currentPlayerIndexInSortedArray].score =
                   updatedPlayersArray[currentPlayerIndexInSortedArray].score -
@@ -172,13 +209,15 @@ export default function GameplayPage(props) {
                       {currentPlayerIndexInSortedArray + 1}th place loses {penaltyPercentage} of {number}. (-{penaltyAmount} points!! 😱) </p>
                   </div>
                 );
+
+                console.log('penaltyMessage ~>', penaltyMessage)
                 
               }
             }
 
             if (roll >= 3) {
               onStartNewRound();
-              onNextPlayer();
+              onNextPlayer();   
             }
 
             if (roll < 3) {
@@ -187,6 +226,7 @@ export default function GameplayPage(props) {
               }
               onNextRoll();
               onNextPlayer();
+
             }
           }}
         >
@@ -201,6 +241,12 @@ export default function GameplayPage(props) {
             }
             onNextRoll();
             onNextPlayer();
+                        
+            setPenaltyMessage(
+              <div className="flex items-center justify-center text-center text-orange-300">
+                <p></p>
+              </div>
+            );
           }}
         >
           +8
@@ -214,6 +260,12 @@ export default function GameplayPage(props) {
             }
             onNextRoll();
             onNextPlayer();
+                        
+            setPenaltyMessage(
+              <div className="flex items-center justify-center text-center text-orange-300">
+                <p></p>
+              </div>
+            );
           }}
         >
           +9
@@ -232,6 +284,12 @@ export default function GameplayPage(props) {
             }
             onNextRoll();
             onNextPlayer();
+                        
+            setPenaltyMessage(
+              <div className="flex items-center justify-center text-center text-orange-300">
+                <p></p>
+              </div>
+            );
           }}
         >
           +10
@@ -245,6 +303,12 @@ export default function GameplayPage(props) {
             }
             onNextRoll();
             onNextPlayer();
+                        
+            setPenaltyMessage(
+              <div className="flex items-center justify-center text-center text-orange-300">
+                <p></p>
+              </div>
+            );
           }}
         >
           +11
@@ -258,6 +322,12 @@ export default function GameplayPage(props) {
             }
             onNextRoll();
             onNextPlayer();
+                        
+            setPenaltyMessage(
+              <div className="flex items-center justify-center text-center text-orange-300">
+                <p></p>
+              </div>
+            );
           }}
         >
           +12
@@ -274,6 +344,12 @@ export default function GameplayPage(props) {
             onDouble();
             onNextRoll();
             onNextPlayer();
+                        
+            setPenaltyMessage(
+              <div className="flex items-center justify-center text-center text-orange-300">
+                <p></p>
+              </div>
+            );
           }}
         >
           x2
