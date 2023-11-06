@@ -189,7 +189,7 @@ export default function GameplayPage(props) {
                 setPenaltyMessage(
                   
                   <div className="flex items-center justify-center text-center text-orange-300">
-                  <p> Oh no! {updatedPlayersArray[currentPlayerIndexInSortedArray].name} can't go below 0! </p>
+                  <p> Oh no! {updatedPlayersArray[currentPlayerIndexInSortedArray].name} cannot go below 0! </p>
                   </div>
 
                 );
