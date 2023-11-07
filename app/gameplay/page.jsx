@@ -147,7 +147,7 @@ export default function GameplayPage(props) {
             roll >= 3 ? "bg-cyan-950" : "bg-orange-400"
           }`}
           onClick={() => {
-            if (roll >= 3 && currentRound >= maxRounds - 5) {
+            if (roll >= 3 && currentRound >= maxRounds - 5) { //penalized rounds ruleset
               // Create a copy of the players array
               const updatedPlayersArray = [...playersArray];
 
@@ -226,6 +226,12 @@ export default function GameplayPage(props) {
               }
               onNextRoll();
               onNextPlayer();
+
+              setPenaltyMessage(
+                <div className="flex items-center justify-center text-center text-orange-300">
+                  <p></p>
+                </div>
+              );
 
             }
           }}
