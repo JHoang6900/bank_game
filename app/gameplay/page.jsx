@@ -45,24 +45,26 @@ export default function GameplayPage(props) {
         id="row1-buttons"
         className="flex-row items-center justify-center py-2"
       >
-        <button
-          className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
-          onClick={() => {
-            for (let i = 0; i < 2; i++) {
-              onIncrement();
-            }
-            onNextRoll();
-            onNextPlayer();
-            
-            setPenaltyMessage(
-              <div className="flex items-center justify-center text-center text-orange-300">
-                <p></p>
-              </div>
-            );
-          }}
-        >
-          +2
-        </button>
+        {roll < 1 && (
+          <button
+            className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
+            onClick={() => {
+              for (let i = 0; i < 2; i++) {
+                onIncrement();
+              }
+              onNextRoll();
+              onNextPlayer();
+
+              setPenaltyMessage(
+                <div className="flex items-center justify-center text-center text-orange-300">
+                  <p></p>
+                </div>
+              );
+            }}
+          >
+            +2
+          </button>
+        )}
 
         <button
           className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
@@ -72,7 +74,7 @@ export default function GameplayPage(props) {
             }
             onNextRoll();
             onNextPlayer();
-            
+
             setPenaltyMessage(
               <div className="flex items-center justify-center text-center text-orange-300">
                 <p></p>
@@ -91,7 +93,7 @@ export default function GameplayPage(props) {
             }
             onNextRoll();
             onNextPlayer();
-                        
+
             setPenaltyMessage(
               <div className="flex items-center justify-center text-center text-orange-300">
                 <p></p>
@@ -110,7 +112,7 @@ export default function GameplayPage(props) {
             }
             onNextRoll();
             onNextPlayer();
-                        
+
             setPenaltyMessage(
               <div className="flex items-center justify-center text-center text-orange-300">
                 <p></p>
@@ -131,7 +133,7 @@ export default function GameplayPage(props) {
             }
             onNextRoll();
             onNextPlayer();
-                        
+
             setPenaltyMessage(
               <div className="flex items-center justify-center text-center text-orange-300">
                 <p></p>
@@ -147,7 +149,8 @@ export default function GameplayPage(props) {
             roll >= 3 ? "bg-cyan-950" : "bg-orange-400"
           }`}
           onClick={() => {
-            if (roll >= 3 && currentRound >= maxRounds - 5) { //penalized rounds ruleset
+            if (roll >= 3 && currentRound >= maxRounds - 5) {
+              //penalized rounds ruleset
               // Create a copy of the players array
               const updatedPlayersArray = [...playersArray];
 
@@ -187,14 +190,18 @@ export default function GameplayPage(props) {
                 updatedPlayersArray[currentPlayerIndexInSortedArray].score = 0;
 
                 setPenaltyMessage(
-                  
                   <div className="flex items-center justify-center text-center text-orange-300">
-                  <p> Oh no! {updatedPlayersArray[currentPlayerIndexInSortedArray].name} cannot go below 0! </p>
+                    <p>
+                      {" "}
+                      Oh no!{" "}
+                      {
+                        updatedPlayersArray[currentPlayerIndexInSortedArray]
+                          .name
+                      }{" "}
+                      cannot go below 0!{" "}
+                    </p>
                   </div>
-
                 );
-
-                
               } else {
                 updatedPlayersArray[currentPlayerIndexInSortedArray].score =
                   updatedPlayersArray[currentPlayerIndexInSortedArray].score -
@@ -205,19 +212,28 @@ export default function GameplayPage(props) {
 
                 setPenaltyMessage(
                   <div className="flex items-center justify-center text-center text-orange-300">
-                    <p> Unlucky! {updatedPlayersArray[currentPlayerIndexInSortedArray].name} rolled a 7! <br />
-                      {currentPlayerIndexInSortedArray + 1}th place loses {penaltyPercentage} of {number}. (-{penaltyAmount} points!! 😱) </p>
+                    <p>
+                      {" "}
+                      Unlucky!{" "}
+                      {
+                        updatedPlayersArray[currentPlayerIndexInSortedArray]
+                          .name
+                      }{" "}
+                      rolled a 7! <br />
+                      {currentPlayerIndexInSortedArray + 1}th place loses{" "}
+                      {penaltyPercentage} of {number}. (-{penaltyAmount}{" "}
+                      points!! 😱){" "}
+                    </p>
                   </div>
                 );
 
-                console.log('penaltyMessage ~>', penaltyMessage)
-                
+                console.log("penaltyMessage ~>", penaltyMessage);
               }
             }
 
             if (roll >= 3) {
               onStartNewRound();
-              onNextPlayer();   
+              onNextPlayer();
             }
 
             if (roll < 3) {
@@ -232,7 +248,6 @@ export default function GameplayPage(props) {
                   <p></p>
                 </div>
               );
-
             }
           }}
         >
@@ -247,7 +262,7 @@ export default function GameplayPage(props) {
             }
             onNextRoll();
             onNextPlayer();
-                        
+
             setPenaltyMessage(
               <div className="flex items-center justify-center text-center text-orange-300">
                 <p></p>
@@ -266,7 +281,7 @@ export default function GameplayPage(props) {
             }
             onNextRoll();
             onNextPlayer();
-                        
+
             setPenaltyMessage(
               <div className="flex items-center justify-center text-center text-orange-300">
                 <p></p>
@@ -290,7 +305,7 @@ export default function GameplayPage(props) {
             }
             onNextRoll();
             onNextPlayer();
-                        
+
             setPenaltyMessage(
               <div className="flex items-center justify-center text-center text-orange-300">
                 <p></p>
@@ -309,7 +324,7 @@ export default function GameplayPage(props) {
             }
             onNextRoll();
             onNextPlayer();
-                        
+
             setPenaltyMessage(
               <div className="flex items-center justify-center text-center text-orange-300">
                 <p></p>
@@ -320,24 +335,26 @@ export default function GameplayPage(props) {
           +11
         </button>
 
-        <button
-          className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
-          onClick={() => {
-            for (let i = 0; i < 12; i++) {
-              onIncrement();
-            }
-            onNextRoll();
-            onNextPlayer();
-                        
-            setPenaltyMessage(
-              <div className="flex items-center justify-center text-center text-orange-300">
-                <p></p>
-              </div>
-            );
-          }}
-        >
-          +12
-        </button>
+        {roll < 1 && (
+          <button
+            className="px-4 py-2 mr-1 font-bold text-white bg-orange-400 rounded-full hover:bg-orange-700"
+            onClick={() => {
+              for (let i = 0; i < 12; i++) {
+                onIncrement();
+              }
+              onNextRoll();
+              onNextPlayer();
+
+              setPenaltyMessage(
+                <div className="flex items-center justify-center text-center text-orange-300">
+                  <p></p>
+                </div>
+              );
+            }}
+          >
+            +12
+          </button>
+        )}
       </div>
 
       <div
@@ -350,7 +367,7 @@ export default function GameplayPage(props) {
             onDouble();
             onNextRoll();
             onNextPlayer();
-                        
+
             setPenaltyMessage(
               <div className="flex items-center justify-center text-center text-orange-300">
                 <p></p>

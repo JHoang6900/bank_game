@@ -124,6 +124,8 @@ export default function PlayersPage(props) {
         </button>
       )}
 
+
+
       <button
         className="px-24 py-2 mt-1 mr-1 font-bold text-white bg-green-800 rounded-full hover:bg-orange-700"
         onClick={onDebugPlayer}
