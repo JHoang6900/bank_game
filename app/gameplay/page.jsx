@@ -210,19 +210,29 @@ export default function GameplayPage(props) {
                 // Update the state with the modified array
                 setPlayersArray(updatedPlayersArray);
 
+
+                const nthNumber = (number) => {
+                  if (number > 3 && number < 21) return "th";
+                  switch (number % 10) {
+                    case 1:
+                      return "st";
+                    case 2:
+                      return "nd";
+                    case 3:
+                      return "rd";
+                    default:
+                      return "th";
+                  }
+                };
+
+                const ordinalSuffix = nthNumber(currentPlayerIndexInSortedArray + 1);
+
                 setPenaltyMessage(
                   <div className="flex items-center justify-center text-center text-orange-300">
                     <p>
-                      {" "}
-                      Unlucky!{" "}
-                      {
-                        updatedPlayersArray[currentPlayerIndexInSortedArray]
-                          .name
-                      }{" "}
-                      rolled a 7! <br />
-                      {currentPlayerIndexInSortedArray + 1}th place loses{" "}
-                      {penaltyPercentage} of {number}. (-{penaltyAmount}{" "}
-                      points!! 😱){" "}
+                      
+                      Unlucky! {updatedPlayersArray[currentPlayerIndexInSortedArray].name} rolled a 7! <br />
+                      {currentPlayerIndexInSortedArray + 1}{ordinalSuffix} place loses {penaltyPercentage} of {number}. (-{penaltyAmount} points!! 😱)
                     </p>
                   </div>
                 );
