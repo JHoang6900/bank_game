@@ -167,19 +167,19 @@ export default function GameplayPage(props) {
               setCurrentPlayerIndex(currentPlayerIndexInSortedArray);
 
               // Apply the penalty based on the player's rank
-              let penaltyPercentage;
+              let penaltyDecimal;
               if (currentPlayerIndexInSortedArray === 0) {
-                penaltyPercentage = 0.8; // Leading Player: Deduct 80% of the total number
+                penaltyDecimal = 0.8; // Leading Player: Deduct 80% of the total number
               } else if (currentPlayerIndexInSortedArray === 1) {
-                penaltyPercentage = 0.7; // 2nd Place Player: Deduct 70% of the total number
+                penaltyDecimal = 0.7; // 2nd Place Player: Deduct 70% of the total number
               } else if (currentPlayerIndexInSortedArray === 2) {
-                penaltyPercentage = 0.6; // 3rd Place Player: Deduct 60% of the total number
+                penaltyDecimal = 0.6; // 3rd Place Player: Deduct 60% of the total number
               } else {
-                penaltyPercentage = 0.4; // 4th Place or Lower: Deduct 40% of the total number
+                penaltyDecimal = 0.4; // 4th Place or Lower: Deduct 40% of the total number
               }
 
               // Calculate the penalty amount
-              const penaltyAmount = Math.round(penaltyPercentage * number);
+              const penaltyAmount = Math.round(penaltyDecimal * number);
 
               // Deduct the penalty amount from the current player's score
               if (
@@ -191,17 +191,10 @@ export default function GameplayPage(props) {
 
                 setPenaltyMessage(
                   <div className="flex items-center justify-center text-center text-orange-300">
-                    <p>
-                      {" "}
-                      Oh no!{" "}
-                      {
-                        updatedPlayersArray[currentPlayerIndexInSortedArray]
-                          .name
-                      }{" "}
-                      cannot go below 0!{" "}
-                    </p>
+                    <p>Oh no! {updatedPlayersArray[currentPlayerIndexInSortedArray].name} can&apos;t go below 0! 😭</p>
                   </div>
                 );
+                
               } else {
                 updatedPlayersArray[currentPlayerIndexInSortedArray].score =
                   updatedPlayersArray[currentPlayerIndexInSortedArray].score -
@@ -209,7 +202,6 @@ export default function GameplayPage(props) {
 
                 // Update the state with the modified array
                 setPlayersArray(updatedPlayersArray);
-
 
                 const nthNumber = (number) => {
                   if (number > 3 && number < 21) return "th";
@@ -225,14 +217,24 @@ export default function GameplayPage(props) {
                   }
                 };
 
-                const ordinalSuffix = nthNumber(currentPlayerIndexInSortedArray + 1);
+                const ordinalSuffix = nthNumber(
+                  currentPlayerIndexInSortedArray + 1
+                );
+
+                const penaltyPercentage = penaltyDecimal * 100;
 
                 setPenaltyMessage(
                   <div className="flex items-center justify-center text-center text-orange-300">
                     <p>
-                      
-                      Unlucky! {updatedPlayersArray[currentPlayerIndexInSortedArray].name} rolled a 7! <br />
-                      {currentPlayerIndexInSortedArray + 1}{ordinalSuffix} place loses {penaltyPercentage} of {number}. (-{penaltyAmount} points!! 😱)
+                      Unlucky!{" "}
+                      {
+                        updatedPlayersArray[currentPlayerIndexInSortedArray]
+                          .name
+                      }{" "}
+                      rolled a 7! <br />
+                      {currentPlayerIndexInSortedArray + 1}
+                      {ordinalSuffix} place loses {penaltyPercentage}% of{" "}
+                      {number}. (-{penaltyAmount} points!! 😱)
                     </p>
                   </div>
                 );
