@@ -8,9 +8,13 @@ export default function GameplayPage(props) {
     currentRound,
     maxRounds,
     onIncrement,
+    onDecrement,
     onDouble,
+    onDivide,
     onNextRoll,
+    onPreviousRoll,
     onNextPlayer,
+    onPreviousPlayer,
     onBankPlayers,
     onStartNewRound,
     currentPlayerIndex,
@@ -22,8 +26,59 @@ export default function GameplayPage(props) {
 
   const [penaltyMessage, setPenaltyMessage] = useState("");
 
+  const [loopNumber, setLoopNumber] = useState(0);
+  const [lastButton, setLastButton] = useState("");
+
   return (
-    <div className="flex flex-col items-center justify-center w-full p-8 mb-6 rounded-2xl outline-double outline-zinc-400">
+    <div className="relative flex flex-col items-center justify-center w-full p-8 mb-6 rounded-2xl outline-double outline-zinc-400">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={2}
+        stroke="currentColor"
+        className={`absolute w-12 h-10 p-2 text-xl font-extrabold bg-orange-400 rounded-full ${
+          lastButton === "Undo" ? "text-white pointer-events-none bg-gray-400" : "text-white hover:bg-orange-700"
+        } left-5 top-7`}
+        id="undo"
+        onClick={() => {
+          if (lastButton === "plusNumber") {
+            for (let j = 0; j < loopNumber + 1; j++) {
+              onDecrement();
+            }
+          }
+
+          if (lastButton === "doubleNumber") {
+            onDivide();
+          }
+
+          onPreviousRoll();
+          onPreviousPlayer();
+          setLastButton("Undo");
+        }}
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"
+        />
+      </svg>
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={2}
+        stroke="currentColor"
+        className="absolute w-12 h-10 p-2 text-xl font-extrabold text-white bg-orange-400 rounded-full hover:bg-orange-700 right-5 top-7"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M15 15l6-6m0 0l-6-6m6 6H9a6 6 0 000 12h3"
+        />
+      </svg>
+
       <p className="font-semibold leading-tight">
         Round: {currentRound}/{maxRounds}
       </p>
@@ -51,6 +106,7 @@ export default function GameplayPage(props) {
             onClick={() => {
               for (let i = 0; i < 2; i++) {
                 onIncrement();
+                setLoopNumber(i);
               }
               onNextRoll();
               onNextPlayer();
@@ -60,6 +116,8 @@ export default function GameplayPage(props) {
                   <p></p>
                 </div>
               );
+
+              setLastButton("plusNumber");
             }}
           >
             +2
@@ -71,6 +129,7 @@ export default function GameplayPage(props) {
           onClick={() => {
             for (let i = 0; i < 3; i++) {
               onIncrement();
+              setLoopNumber(i);
             }
             onNextRoll();
             onNextPlayer();
@@ -80,6 +139,8 @@ export default function GameplayPage(props) {
                 <p></p>
               </div>
             );
+
+            setLastButton("plusNumber");
           }}
         >
           +3
@@ -90,6 +151,7 @@ export default function GameplayPage(props) {
           onClick={() => {
             for (let i = 0; i < 4; i++) {
               onIncrement();
+              setLoopNumber(i);
             }
             onNextRoll();
             onNextPlayer();
@@ -99,6 +161,8 @@ export default function GameplayPage(props) {
                 <p></p>
               </div>
             );
+
+            setLastButton("plusNumber");
           }}
         >
           +4
@@ -109,6 +173,7 @@ export default function GameplayPage(props) {
           onClick={() => {
             for (let i = 0; i < 5; i++) {
               onIncrement();
+              setLoopNumber(i);
             }
             onNextRoll();
             onNextPlayer();
@@ -118,6 +183,8 @@ export default function GameplayPage(props) {
                 <p></p>
               </div>
             );
+
+            setLastButton("plusNumber");
           }}
         >
           +5
@@ -130,6 +197,7 @@ export default function GameplayPage(props) {
           onClick={() => {
             for (let i = 0; i < 6; i++) {
               onIncrement();
+              setLoopNumber(i);
             }
             onNextRoll();
             onNextPlayer();
@@ -139,6 +207,8 @@ export default function GameplayPage(props) {
                 <p></p>
               </div>
             );
+
+            setLastButton("plusNumber");
           }}
         >
           +6
@@ -191,10 +261,16 @@ export default function GameplayPage(props) {
 
                 setPenaltyMessage(
                   <div className="flex items-center justify-center text-center text-orange-300">
-                    <p>Oh no! {updatedPlayersArray[currentPlayerIndexInSortedArray].name} can&apos;t go below 0! 😭</p>
+                    <p>
+                      Oh no!{" "}
+                      {
+                        updatedPlayersArray[currentPlayerIndexInSortedArray]
+                          .name
+                      }{" "}
+                      can&apos;t go below 0! 😭
+                    </p>
                   </div>
                 );
-                
               } else {
                 updatedPlayersArray[currentPlayerIndexInSortedArray].score =
                   updatedPlayersArray[currentPlayerIndexInSortedArray].score -
@@ -251,6 +327,8 @@ export default function GameplayPage(props) {
             if (roll < 3) {
               for (let i = 0; i < 70; i++) {
                 onIncrement();
+                setLoopNumber(i);
+                setLastButton("plusNumber");
               }
               onNextRoll();
               onNextPlayer();
@@ -271,6 +349,7 @@ export default function GameplayPage(props) {
           onClick={() => {
             for (let i = 0; i < 8; i++) {
               onIncrement();
+              setLoopNumber(i);
             }
             onNextRoll();
             onNextPlayer();
@@ -280,6 +359,8 @@ export default function GameplayPage(props) {
                 <p></p>
               </div>
             );
+
+            setLastButton("plusNumber");
           }}
         >
           +8
@@ -290,6 +371,7 @@ export default function GameplayPage(props) {
           onClick={() => {
             for (let i = 0; i < 9; i++) {
               onIncrement();
+              setLoopNumber(i);
             }
             onNextRoll();
             onNextPlayer();
@@ -299,6 +381,8 @@ export default function GameplayPage(props) {
                 <p></p>
               </div>
             );
+
+            setLastButton("plusNumber");
           }}
         >
           +9
@@ -314,6 +398,7 @@ export default function GameplayPage(props) {
           onClick={() => {
             for (let i = 0; i < 10; i++) {
               onIncrement();
+              setLoopNumber(i);
             }
             onNextRoll();
             onNextPlayer();
@@ -323,6 +408,8 @@ export default function GameplayPage(props) {
                 <p></p>
               </div>
             );
+
+            setLastButton("plusNumber");
           }}
         >
           +10
@@ -333,6 +420,7 @@ export default function GameplayPage(props) {
           onClick={() => {
             for (let i = 0; i < 11; i++) {
               onIncrement();
+              setLoopNumber(i);
             }
             onNextRoll();
             onNextPlayer();
@@ -342,6 +430,7 @@ export default function GameplayPage(props) {
                 <p></p>
               </div>
             );
+            setLastButton("plusNumber");
           }}
         >
           +11
@@ -353,6 +442,7 @@ export default function GameplayPage(props) {
             onClick={() => {
               for (let i = 0; i < 12; i++) {
                 onIncrement();
+                setLoopNumber(i);
               }
               onNextRoll();
               onNextPlayer();
@@ -362,6 +452,7 @@ export default function GameplayPage(props) {
                   <p></p>
                 </div>
               );
+              setLastButton("plusNumber");
             }}
           >
             +12
@@ -385,6 +476,8 @@ export default function GameplayPage(props) {
                 <p></p>
               </div>
             );
+
+            setLastButton("doubleNumber");
           }}
         >
           x2

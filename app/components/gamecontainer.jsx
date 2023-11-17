@@ -21,6 +21,8 @@ export default function GameContainer() {
 
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
 
+  
+
   const handleStartGame = () => {
     setGameEnded(false);
     setGameStarted(true);
@@ -55,6 +57,23 @@ export default function GameContainer() {
     // Update currentPlayerIndex
     setCurrentPlayerIndex(nextIndex);
   }
+
+  function previousPlayer() {
+    const updatedPlayersArray = [...playersArray];
+    let prevIndex = currentPlayerIndex;
+  
+    // Use a while loop to find the previous player who hasn't banked
+    while (true) {
+      prevIndex = (prevIndex - 1 + updatedPlayersArray.length) % updatedPlayersArray.length;
+  
+      if (!updatedPlayersArray[prevIndex].hasBanked) {
+        break;
+      }
+    }
+  
+    setCurrentPlayerIndex(prevIndex);
+  }
+  
   
 
   const handleEndGame = () => {
@@ -91,13 +110,26 @@ export default function GameContainer() {
     setNumber((a) => a + 1);
   }
 
+    // Function to decrement the number
+    function decrement() {
+      setNumber((a) => a - 1);
+    }
+
   // Function to double the number
   function double() {
     setNumber((a) => a * 2);
   }
 
+  function divide(){
+    setNumber((a) => a / 2);
+  }
+
   function nextRoll() {
     setRoll((a) => a + 1);
+  }
+
+  function previousRoll() {
+    setRoll((a) => a - 1);
   }
 
   function roundIncrement() {
@@ -192,10 +224,14 @@ export default function GameContainer() {
         roll={roll}
         currentRound={currentRound}
         onNextPlayer={nextPlayer}
+        onPreviousPlayer={previousPlayer}
         maxRounds={maxRounds}
         onIncrement={increment}
+        onDecrement={decrement}
         onNextRoll={nextRoll}
+        onPreviousRoll={previousRoll}
         onDouble={double}
+        onDivide={divide}
         onBankPlayers={bankPlayers}
         onStartNewRound={startNewRound}
         currentPlayerIndex={currentPlayerIndex}
@@ -228,4 +264,3 @@ export default function GameContainer() {
 // fix: decimal scores
 // fix: UseEffect for auto sort 
 // undo button 
-// 
