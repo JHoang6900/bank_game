@@ -37,8 +37,8 @@ export default function GameplayPage(props) {
         viewBox="0 0 24 24"
         strokeWidth={2}
         stroke="currentColor"
-        className={`absolute w-12 h-10 p-2 text-xl font-extrabold bg-orange-400 rounded-full ${
-          lastButton === "Undo" ? "text-white pointer-events-none bg-gray-400" : "text-white hover:bg-orange-700"
+        className={`absolute w-12 h-10 p-2 text-xl font-extrabold rounded-full ${
+          lastButton === "Undo" ? "bg-cyan-950 hover:bg-gray-700 pointer-events-none text-white" : "text-white bg-orange-400 hover:bg-orange-700"
         } left-5 top-7`}
         id="undo"
         onClick={() => {
@@ -504,6 +504,8 @@ export default function GameplayPage(props) {
 // Undo, Redo, Home buttons
 
 // after a player banks, change background color to orange.
+
+// add Undo round end after Bomb.
 
 // done:
 // after banking type player out of roll index
